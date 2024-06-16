@@ -1,0 +1,11 @@
+def count_words_with_length_at_least(s, l):
+    words = s.split()
+    count = sum(1 for word in words if len(word) >= l)
+    return count
+
+# Input
+S = input().strip()
+L = int(input())
+
+# Output
+print(count_words_with_length_at_least(S, L))
