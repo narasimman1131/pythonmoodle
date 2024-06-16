@@ -1,0 +1,28 @@
+def count_pairs(activities, k):
+    if not activities or len(activities) == 1:  # Edge case: empty or single-element list
+        return 0
+    
+    activity_count = {}
+    pairs_count = 0
+    unique_activities = set(activities)
+    
+    for activity in activities:
+        activity_count[activity] = activity_count.get(activity, 0) + 1
+    
+    if k == 0:
+        for count in activity_count.values():
+            pairs_count += count * (count - 1) // 2  # Calculate combinations for each count of activities
+    else:
+        for activity in unique_activities:
+            if activity + k in unique_activities:
+                pairs_count += activity_count[activity] * activity_count[activity + k]
+    
+    return pairs_count
+
+# Input handling
+n = int(input())
+activities = list(map(int, input().split()))
+k = int(input())
+
+# Output the result
+print(count_pairs(activities, k))
